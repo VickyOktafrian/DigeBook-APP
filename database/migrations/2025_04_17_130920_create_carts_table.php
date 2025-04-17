@@ -9,13 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('carts', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+    public function up()
+{
+    Schema::create('carts', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->foreignId('book_id')->constrained()->onDelete('cascade');
+        $table->integer('quantity')->default(1);
+        $table->timestamps();
+    });
+}
+
 
     /**
      * Reverse the migrations.

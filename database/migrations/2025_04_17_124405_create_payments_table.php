@@ -9,13 +9,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('payments', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+    public function up()
+{
+    Schema::create('payments', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('order_id')->constrained()->onDelete('cascade');
+        $table->string('method')->nullable(); // ex: transfer, gopay, dll
+        $table->timestamp('paid_at')->nullable();
+        $table->enum('status', ['pending', 'confirmed', 'failed'])->default('pending');
+        $table->timestamps();
+    });
+}
+
 
     /**
      * Reverse the migrations.
