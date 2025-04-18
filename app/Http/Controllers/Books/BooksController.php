@@ -50,4 +50,9 @@ class BooksController extends Controller
         $books = Books::with('category')->get();
         return view('books', compact('books'));
     }
+    public function getBooksJson()
+{
+    $books = Books::with('category')->get();
+    return response()->json($books);
+}
 }
