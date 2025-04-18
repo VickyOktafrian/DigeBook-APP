@@ -20,7 +20,6 @@ return new class extends Migration
         $table->string('publisher')->nullable();
         $table->string('isbn')->nullable();
         $table->decimal('price', 10, 2);
-        $table->integer('stock');
         $table->string('cover_image')->nullable();
         $table->foreignId('category_id')->constrained()->onDelete('cascade');
         $table->timestamps();

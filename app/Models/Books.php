@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Books extends Model
 {
     protected $fillable = [
         'title', 'slug', 'description', 'author', 'publisher', 'isbn',
-        'price', 'stock', 'cover_image', 'category_id'
+        'price', 'cover_image', 'category_id'
     ];
 
     public function category()
