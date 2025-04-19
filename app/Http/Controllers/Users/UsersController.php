@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class UsersController extends Controller
 {
     // Register
+
     public function register(Request $request)
     {
         $request->validate([
@@ -56,10 +57,10 @@ class UsersController extends Controller
     }
 
     // Logout
-    public function logout(Request $request)
+    public function __construct()
     {
-        $request->user()->currentAccessToken()->delete();
-
-        return response()->json(['message' => 'Logged out successfully']);
+        $this->middleware('guest')->except('logout');
+        $this->middleware('auth')->only('logout');
     }
+    
 }

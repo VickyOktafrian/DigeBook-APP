@@ -33,7 +33,7 @@
 						<div class="right-element">
                             @guest
                             @if (Route::has('login'))
-                            <a class="btn btn-outline-primary btn-sm me-2 rounded-pill" href="{{ route('login') }}">
+                            <a class="btn btn-outline-primary btn-sm me-2 rounded-pill mb-4" href="{{ route('login') }}">
                                 <i class="icon icon-user"></i> {{ __('Login') }}
                             </a>                            
                             @endif
@@ -43,7 +43,6 @@
                                     <i class="icon icon-user"></i> {{ Auth::user()->name }}
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                                    <li><a class="dropdown-item" href="{{ route('users.followed.shows') }}">Your Followed Shows</a></li>
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
