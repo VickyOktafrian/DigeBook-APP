@@ -14,13 +14,12 @@ class BooksController extends Controller
     // Ambil data dari API dan simpan ke database
     public function getBooks()
     {
-        $response = Http::get('https://bukuacak-9bdcb4ef2605.herokuapp.com/api/v1/book/');
+        $response = Http::get('https://bukuacak-9bdcb4ef2605.herokuapp.com/api/v1/book');
 
         if ($response->successful()) {
             $json = $response->json();
             $bookList = $json['books'];
             $categories = Categories::all();
-
             foreach ($bookList as $data) {
                 $category = $categories->random();
                 Books::firstOrCreate(
@@ -46,10 +45,21 @@ class BooksController extends Controller
 
     // Tampilkan buku dalam view
     public function showBooksView()
-    {
-        $books = Books::with('category')->get();
-        return view('books', compact('books'));
+{
+    // Ambil data buku dari database
+    $bookCount = Books::count();
+
+    // Kalau database masih kosong, fetch dari API
+    if ($bookCount === 0) {
+        $this->getBooks(); // panggil method fetch
     }
+
+    // Ambil data buku lagi setelah disimpan
+    $books = Books::with('category')->get();
+    $sliderBooks = Books::inRandomOrder()->limit(3)->get();
+    return view('books', compact('books', 'sliderBooks'));
+}
+
     public function getBooksJson()
 {
     $books = Books::with('category')->get();

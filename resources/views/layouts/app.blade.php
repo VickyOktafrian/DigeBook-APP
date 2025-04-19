@@ -14,10 +14,11 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('assets/css/css/normalize.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('assets/css/icomoon/icomoon.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('assets/css/css/vendor.css') }}" type="text/css">
+		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css">
+		<link rel="stylesheet" href="{{ asset('assets/css/css/normalize.css') }}" type="text/css">
+		<link rel="stylesheet" href="{{ asset('assets/css/icomoon/icomoon.css') }}" type="text/css">
+		<link rel="stylesheet" href="{{ asset('assets/css/css/vendor.css') }}" type="text/css">
+		
 	
 </head>
 <body data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
@@ -93,7 +94,7 @@
 						<nav id="navbar">
 							<div class="main-menu stellarnav">
 								<ul class="menu-list">
-									<li class="menu-item active"><a href="#home">Home</a></li>
+									<li class="menu-item active"><a href="{{ route('books.view') }}">Home</a></li>
 									<li class="menu-item has-sub">
 										<a href="#pages" class="nav-link">Pages</a>
 
