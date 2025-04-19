@@ -21,10 +21,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Menambahkan kategori
-        Categories::create([
-            'name' => 'Drama',
-            'slug' => 'drama',
-        ]);
+        
 
         Categories::create([
             'name' => 'Fiksi',
@@ -41,10 +38,6 @@ class DatabaseSeeder extends Seeder
             'slug' => 'sejarah',
         ]);
 
-        Categories::create([
-            'name' => 'Pendidikan',
-            'slug' => 'pendidikan',
-        ]);
 
         Categories::create([
             'name' => 'Agama',
@@ -56,11 +49,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'filsafat',
         ]);
 
-        Categories::create([
-            'name' => 'Kesehatan',
-            'slug' => 'kesehatan',
-        ]);
-
+       
         Categories::create([
             'name' => 'Teknologi',
             'slug' => 'teknologi',
@@ -69,16 +58,6 @@ class DatabaseSeeder extends Seeder
         Categories::create([
             'name' => 'Sosial',
             'slug' => 'sosial',
-        ]);
-
-        Categories::create([
-            'name' => 'Ekonomi',
-            'slug' => 'ekonomi',
-        ]);
-
-        Categories::create([
-            'name' => 'Psikologi',
-            'slug' => 'psikologi',
         ]);
     }
 }
