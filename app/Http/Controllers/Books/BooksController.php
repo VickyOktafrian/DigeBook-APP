@@ -57,8 +57,11 @@ class BooksController extends Controller
     // Ambil data buku lagi setelah disimpan
     $books = Books::with('category')->get();
     $sliderBooks = Books::inRandomOrder()->limit(3)->get();
-    return view('books', compact('books', 'sliderBooks'));
+    $categories = Categories::all(); // Ambil data kategori
+
+    return view('books', compact('books', 'sliderBooks', 'categories')); // Kirim kategori ke view
 }
+
 
     public function getBooksJson()
 {
