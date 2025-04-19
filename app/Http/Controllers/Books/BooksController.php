@@ -42,6 +42,22 @@ class BooksController extends Controller
 
         return response()->json(['message' => 'Gagal mengambil data dari API.'], $response->status());
     }
+    public function getBookById($id)
+{
+    $book = Books::find($id);
+
+    if (!$book) {
+        return response()->json([
+            'message' => 'Buku tidak ditemukan'
+        ], 404);
+    }
+
+    return response()->json([
+        'message' => 'Detail buku berhasil diambil',
+        'data' => $book
+    ], 200);
+}
+
 
     // Tampilkan buku dalam view
     public function showBooksView()
@@ -59,7 +75,7 @@ class BooksController extends Controller
     $sliderBooks = Books::inRandomOrder()->limit(3)->get();
     $categories = Categories::all(); // Ambil data kategori
 
-    return view('books', compact('books', 'sliderBooks', 'categories')); // Kirim kategori ke view
+    return view('book.books-view', compact('books', 'sliderBooks', 'categories')); // Kirim kategori ke view
 }
 
 
@@ -68,4 +84,11 @@ class BooksController extends Controller
     $books = Books::with('category')->get();
     return response()->json($books);
 }
+public function BookDetail($slug)
+{
+    $book = Books::where('slug', $slug)->firstOrFail();
+    return view('book.book-detail', compact('book'));
 }
+
+}
+

@@ -23,7 +23,7 @@
                     <h2 class="banner-title">{{ $book->title }}</h2>
                     <p>{{ Str::limit($book->description, 150) }}</p>
                     <div class="btn-wrap">
-                        <a href="#" class="btn btn-outline-accent btn-accent-arrow">
+                        <a href="{{ route('book.detail', $book->slug) }}" class="btn btn-outline-accent btn-accent-arrow">
                             Read More <i class="icon icon-ns-arrow-right"></i>
                         </a>
                     </div>
@@ -73,8 +73,10 @@
                     <div class="col-md-3">
                         <div class="product-item">
                             <figure class="product-style">
-                                <img src="{{ $book->cover_image }}" alt="Books" class="product-item">
-                                <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Beli Sekarang</button>
+                                <a href="{{ route('book.detail', $book->slug) }}">
+                                    <img src="{{ $book->cover_image }}" alt="Books" class="product-item">
+                                </a>
+                                <a href="{{ route('book.detail', $book->slug) }}" class="add-to-cart d-block text-center">Beli Sekarang</a>
                             </figure>
                             <figcaption>
                                 <h3>{{ $book->title }}</h3>
@@ -94,8 +96,10 @@
                     <div class="col-md-3">
                         <div class="product-item">
                             <figure class="product-style">
-                                <img src="{{ $book->cover_image }}" alt="Books" class="product-item">
-                                <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Beli Sekarang</button>
+                                <a href="{{ route('book.detail', $book->slug) }}">
+                                    <img src="{{ $book->cover_image }}" alt="Books" class="product-item">
+                                </a>
+                                <a href="{{ route('book.detail', $book->slug) }}" class="add-to-cart d-block text-center">Beli Sekarang</a>
                             </figure>
                             <figcaption>
                                 <h3>{{ $book->title }}</h3>

@@ -13,6 +13,8 @@
 
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+		<script src="https://cdn.tailwindcss.com"></script>
+
     
 		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css">
 		<link rel="stylesheet" href="{{ asset('assets/css/css/normalize.css') }}" type="text/css">
@@ -58,7 +60,7 @@
                         @endguest
                         
                         
-                            <a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Cart:(0 $)</span></a>
+                            <a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Cart:(0)</span></a>
                         
                             <div class="action-menu">
                                 <div class="search-bar">
@@ -84,39 +86,21 @@
 
 					<div class="col-md-2">
 						<div class="main-logo">
-							<a href="index.html"><img src="images/main-logo.png" alt="logo"></a>
+						  <a href="/">
+							<img src="{{ asset('assets/logo.png') }}" 
+							alt="logo"
+							  class="w-20	 h-20 rounded-full object-cover"
+							>
+						  </a>
 						</div>
-
-					</div>
+					  </div>
+					  
 
 					<div class="col-md-10">
 
 						<nav id="navbar">
 							<div class="main-menu stellarnav">
-								<ul class="menu-list">
-									<li class="menu-item active"><a href="{{ route('books.view') }}">Home</a></li>
-									<li class="menu-item has-sub">
-										<a href="#pages" class="nav-link">Pages</a>
-
-										<ul>
-											<li class="active"><a href="index.html">Home</a></li>
-											<li><a href="index.html">About</a></li>
-											<li><a href="index.html">Styles</a></li>
-											<li><a href="index.html">Blog</a></li>
-											<li><a href="index.html">Post Single</a></li>
-											<li><a href="index.html">Our Store</a></li>
-											<li><a href="index.html">Product Single</a></li>
-											<li><a href="index.html">Contact</a></li>
-											<li><a href="index.html">Thank You</a></li>
-										</ul>
-
-									</li>
-									<li class="menu-item"><a href="#featured-books" class="nav-link">Featured</a></li>
-									<li class="menu-item"><a href="#popular-books" class="nav-link">Popular</a></li>
-									<li class="menu-item"><a href="#special-offer" class="nav-link">Offer</a></li>
-									<li class="menu-item"><a href="#latest-blog" class="nav-link">Articles</a></li>
-									<li class="menu-item"><a href="#download-app" class="nav-link">Download App</a></li>
-								</ul>
+								
 
 								<div class="hamburger">
 									<span class="bar"></span>
