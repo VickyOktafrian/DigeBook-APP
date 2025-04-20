@@ -18,8 +18,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
     Route::delete('/cart/{id}/remove', [CartController::class, 'remove'])->name('cart.remove');
 
+    Route::get('/checkout', [OrderController::class, 'showCheckoutPage'])->name('checkout.view');
     Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
-    Route::get('/checkout/success', [OrderController::class, 'success'])->name('orders.success');
+
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+
+
+
 });
 
 Auth::routes();

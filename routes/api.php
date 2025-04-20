@@ -33,6 +33,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 // Route untuk Order
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/checkout', [OrderController::class, 'checkout']); // Checkout order
-    Route::get('/checkout/success', [OrderController::class, 'success']); // Status sukses checkout
+    Route::post('/checkout', [OrderController::class, 'checkoutAPI']); // Checkout order
+    Route::get('/checkout/success', [OrderController::class, 'successAPI']); // Status sukses checkout
+    Route::post('/orders', [OrderController::class, 'indexAPI']);
+
 });

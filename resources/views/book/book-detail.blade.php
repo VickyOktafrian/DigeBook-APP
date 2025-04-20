@@ -30,9 +30,10 @@
                         <i class="bi bi-cart-plus"></i> Tambah ke Keranjang
                     </button>
 
-                    <button type="submit" class="btn btn-success" formaction="{{ route('checkout') }}">
+                    <!-- Tombol Beli Sekarang sebagai Link -->
+                    <a href="{{ route('checkout.view', ['book_id' => $book->id, 'quantity' => request()->get('quantity', 1)]) }}" class="btn btn-success">
                         <i class="bi bi-bag-check"></i> Beli Sekarang
-                    </button>
+                    </a>
                 </div>
             </form>
         </div>

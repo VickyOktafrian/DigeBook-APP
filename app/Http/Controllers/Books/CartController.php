@@ -53,7 +53,7 @@ class CartController extends Controller
     // Menampilkan daftar item keranjang (untuk Web)
     public function index(Request $request)
 {
-    $cartItems = $request->user()->carts()->with('book')->get();
+    $cartItems = $request->user()->cart()->with('book')->get();
 
     $totalPrice = $cartItems->sum(fn($item) => $item->book->price * $item->quantity);
 

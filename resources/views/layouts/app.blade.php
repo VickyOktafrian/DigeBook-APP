@@ -28,6 +28,9 @@
 					<div class="col-md-6"></div>
 					<div class="col-md-6">
 						<div class="right-element d-flex justify-content-end align-items-center">
+							<a href="{{ route('orders.index') }}" class="mr-4 ml-4">
+								<img src="{{ asset('assets/ikon.png') }}" alt="Orders Icon" style="width: 50px; height: 50px;">
+							</a>
 							<div class="dropdown ms-3">
 								<button class="btn btn-outline-primary btn-sm dropdown-toggle cart-btn w-100 mr-10" type="button" id="cartDropdown" data-bs-toggle="dropdown" aria-expanded="false">
 									<i class="icon icon-clipboard"></i> Cart ({{ $cartCount }})
@@ -55,10 +58,11 @@
 										<li class="text-center">Your cart is empty.</li>
 									@endforelse
 									<li><hr class="dropdown-divider"></li>
-									<li><a class="dropdown-item" href="{{ route('checkout') }}">Checkout</a></li>
+									<li><a class="dropdown-item" href="{{ route('checkout.view') }}">Checkout</a></li>
 								</ul>
 								
 							</div>
+							
 							@guest
 								@if (Route::has('login'))
 									<a class="btn btn-outline-primary btn-sm me-3 rounded-pill mb-4" href="{{ route('login') }}">
