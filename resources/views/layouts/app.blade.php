@@ -60,8 +60,15 @@
                         @endguest
                         
                         
-                            <a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Cart:(0)</span></a>
-                        
+						@auth
+						<a href="#" class="cart for-buy">
+							<i class="icon icon-clipboard"></i><span>Cart:({{ $cartCount }})</span>
+						</a>
+					@else
+						<a href="#" class="cart for-buy">
+							<i class="icon icon-clipboard"></i><span>Cart:(0)</span>
+						</a>
+					@endauth                        
                             <div class="action-menu">
                                 <div class="search-bar">
                                     <a href="#" class="search-button search-toggle" data-selector="#header-wrap">
