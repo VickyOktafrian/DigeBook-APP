@@ -26,9 +26,9 @@ use App\Http\Controllers\Books\OrderController;
 
 // Route untuk Cart
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/cart', [CartController::class, 'index']); // Menampilkan semua item di keranjang
-    Route::post('/cart/add', [CartController::class, 'add']); // Menambah item ke keranjang
-    Route::delete('/cart/{id}/remove', [CartController::class, 'remove']); // Menghapus item dari keranjang
+    Route::get('/cart', [CartController::class, 'indexAPI']); // Menampilkan semua item di keranjang
+    Route::post('/cart/add', [CartController::class, 'addAPI']); // Menambah item ke keranjang
+    Route::delete('/cart/{id}/remove', [CartController::class, 'removeAPI']); // Menghapus item dari keranjang
 });
 
 // Route untuk Order

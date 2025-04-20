@@ -40,5 +40,25 @@ class AppServiceProvider extends ServiceProvider
         
                 $view->with('cartCount', $cartCount);
             });
+            view()->composer('layouts.app', function ($view) {
+                if (Auth::check()) {
+                    $cartItems = Auth::user()->cart()->with('book')->get();
+                    $totalPrice = $cartItems->sum(function($item) {
+                        return $item->book->price * $item->quantity;
+                    });
+                    
+                    $view->with([
+                        'cartItems' => $cartItems,
+                        'totalPrice' => $totalPrice,
+                        'cartCount' => $cartItems->count()
+                    ]);
+                } else {
+                    $view->with([
+                        'cartItems' => collect(),
+                        'totalPrice' => 0,
+                        'cartCount' => 0
+                    ]);
+                }
+            });
     }
 }
