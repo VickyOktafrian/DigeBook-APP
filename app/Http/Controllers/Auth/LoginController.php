@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -63,6 +64,18 @@ class LoginController extends Controller
 
         return response()->json(['error' => 'Unauthorized'], 401);
     }
+    public function logout(Request $request)
+{
+    $token = $request->user()?->currentAccessToken();
+
+    if ($token) {
+        $token->delete();
+    }
+
+    return response()->json([
+        'message' => 'Logout successful'
+    ]);
+}
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

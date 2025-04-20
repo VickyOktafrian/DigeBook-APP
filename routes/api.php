@@ -15,7 +15,7 @@ Route::post('/register', [RegisterController::class, 'register']); // API regist
 Route::post('/login', [LoginController::class, 'login']); // API login
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/logout', [UsersController::class, 'logout']);
+    Route::post('/logout', [LoginController::class, 'logout']);
 
     Route::get('/profile', function (Request $request) {
         return $request->user();
