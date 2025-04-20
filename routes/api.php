@@ -11,11 +11,11 @@ Route::get('/books', [BooksController::class, 'getBooksJson']);
 Route::get('/books/{id}', [BooksController::class, 'getBookById']);
 
 
-Route::post('/register', [RegisterController::class, 'register']); // API register
-Route::post('/login', [LoginController::class, 'login']); // API login
+Route::post('/register', [RegisterController::class, 'registerAPI']); // API register
+Route::post('/login', [LoginController::class, 'loginAPI']); // API login
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/logout', [LoginController::class, 'logout']);
+    Route::post('/logout', [LoginController::class, 'logoutAPI']);
 
     Route::get('/profile', function (Request $request) {
         return $request->user();

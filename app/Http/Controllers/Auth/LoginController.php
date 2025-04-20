@@ -37,7 +37,7 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function login(Request $request)
+    public function loginAPI(Request $request)
     {
         // Validasi input
         $validator = Validator::make($request->all(), [
@@ -64,7 +64,7 @@ class LoginController extends Controller
 
         return response()->json(['error' => 'Unauthorized'], 401);
     }
-    public function logout(Request $request)
+    public function logoutAPI(Request $request)
 {
     $token = $request->user()?->currentAccessToken();
 
