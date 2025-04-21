@@ -12,8 +12,8 @@ Clone Repo:
 ```bash
 git clone https://github.com/VickyOktafrian/DigeBook-APP.git
 ```
-```bash
 Install Dependencies:
+```bash
 composer install
 npm install && npm run build
 ```
