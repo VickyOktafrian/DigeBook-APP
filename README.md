@@ -2,26 +2,28 @@
 
 
 Aplikasi penjualan buku dengan fitur:
-✅ Autentikasi User (Login/Register)
-✅ Pencarian Buku dari API Eksternal
-✅ Keranjang Belanja & Checkout
-✅ Chatbot AI (LibrAI) untuk Bantuan Pelanggan
+- ✅ Autentikasi User (Login/Register)
+- ✅ Pencarian Buku dari API Eksternal
+- ✅ Keranjang Belanja & Checkout
+- ✅ Chatbot AI (LibrAI) untuk Bantuan Pelanggan
 
 **🔧 INSTALASI**
 Clone Repo:
+```bash
 git clone https://github.com/VickyOktafrian/DigeBook-APP.git
 Install Dependencies:
 composer install
 npm install && npm run build
-
+```
 Setup .env:
-env
+```bash
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_DATABASE=nama_db
 DB_USERNAME=root
 DB_PASSWORD=
 OPENROUTER_API_KEY=key_anda
+```
 
 Jalankan:
 php artisan migrate --seed
