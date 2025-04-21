@@ -11,6 +11,8 @@ Aplikasi penjualan buku dengan fitur:
 Clone Repo:
 ```bash
 git clone https://github.com/VickyOktafrian/DigeBook-APP.git
+```
+```bash
 Install Dependencies:
 composer install
 npm install && npm run build
