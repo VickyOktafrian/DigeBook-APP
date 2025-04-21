@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Books;
 
+use App\Http\Controllers\Controller;
 use App\Models\Books;
 use App\Models\Carts;
 use App\Models\Orders;
 use App\Models\Order_items;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -18,19 +18,15 @@ class OrderController extends Controller
         $this->middleware('auth:sanctum');
     }
 
-    // Melakukan checkout
     public function checkoutAPI(Request $request)
     {
-        // Proses checkout: bisa melakukan validasi, menghitung total harga, dan lainnya
         $cartItems = Carts::where('user_id', $request->user()->id)->get();
         
-        // Contoh logika checkout (misalnya membuat order, mengurangi stock, dll)
         $order = Orders::create([
             'user_id' => $request->user()->id,
-            'total_price' => $cartItems->sum('price'), // misalnya total harga
+            'total_price' => $cartItems->sum('price'),
         ]);
 
-        // Hapus semua item keranjang setelah checkout
         Carts::where('user_id', $request->user()->id)->delete();
 
         return response()->json([
@@ -39,7 +35,6 @@ class OrderController extends Controller
         ], 201);
     }
 
-    // Status sukses checkout
     public function successAPI(Request $request)
     {
         return response()->json(['message' => 'Order berhasil!'], 200);
@@ -51,7 +46,7 @@ class OrderController extends Controller
         $bookId = $request->get('book_id');
         $quantity = $request->get('quantity', 1);
         
-        // Check if it's a direct purchase (not from cart)
+        // Direct purchase flow
         if ($bookId) {
             $book = Books::find($bookId);
             if (!$book) {
@@ -87,7 +82,7 @@ class OrderController extends Controller
             }
         }
         
-        // Regular cart checkout flow
+        // Cart checkout flow
         $cartItems = Carts::with('book')->where('user_id', $user->id)->get();
 
         if ($cartItems->isEmpty()) {
@@ -135,11 +130,10 @@ class OrderController extends Controller
         $bookId = $request->get('book_id');
         $quantity = (int)$request->get('quantity', 1);
         
-        // If bookId is provided, it's a direct purchase
+        // Direct purchase checkout page
         if ($bookId) {
             $book = Books::find($bookId);
             if ($book) {
-                // Create a collection similar to cart items format
                 $cartItems = collect([
                     (object)[
                         'book' => $book,
@@ -153,7 +147,7 @@ class OrderController extends Controller
             }
         }
         
-        // Default behavior - get items from cart
+        // Cart checkout page
         $cartItems = Carts::with('book')->where('user_id', $user->id)->get();
 
         if ($cartItems->isEmpty()) {
@@ -186,15 +180,13 @@ class OrderController extends Controller
     
     public function indexAPI(Request $request)
     {
-        $user = $request->user(); // Mengambil user dari request yang sudah terautentikasi
+        $user = $request->user();
 
-        // Mengambil pesanan dengan relasi order_items dan book
         $orders = Orders::with(['order_items.book'])
             ->where('user_id', $user->id)
             ->orderBy('created_at', 'desc')
             ->get();
 
-        // Mengembalikan response JSON
         return response()->json([
             'orders' => $orders
         ], 200);

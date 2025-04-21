@@ -36,7 +36,6 @@ class OpenRouterController extends Controller
 
             $result = $response->json();
             
-            // Log the response for debugging
             Log::info('AIML API Response', ['response' => $result]);
 
             $answer = $result['choices'][0]['message']['content'] ?? 'Gagal mendapatkan jawaban dari AI.';
@@ -51,7 +50,6 @@ class OpenRouterController extends Controller
         ]);
     }
 
-    // API method for chatbot
     public function askApi(Request $request)
     {
         $question = $request->input('question');
@@ -82,7 +80,6 @@ class OpenRouterController extends Controller
 
             $result = $response->json();
             
-            // Log the response for debugging
             Log::info('AIML API Response (Chat)', ['response' => $result]);
 
             $answer = $result['choices'][0]['message']['content'] ?? 'Maaf, saya tidak dapat memproses permintaan Anda saat ini.';

@@ -1,41 +1,40 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Books\BooksController;
-use App\Http\Controllers\Users\UsersController;
+use App\Http\Controllers\Books\CartController;
+use App\Http\Controllers\Books\OrderController;
+use App\Http\Controllers\OpenRouterController;
 
+// Books Routes
 Route::get('/books', [BooksController::class, 'getBooksJson']);
 Route::get('/books/{id}', [BooksController::class, 'getBookById']);
 
+// Auth Routes
+Route::post('/register', [RegisterController::class, 'registerAPI']);
+Route::post('/login', [LoginController::class, 'loginAPI']);
 
-Route::post('/register', [RegisterController::class, 'registerAPI']); // API register
-Route::post('/login', [LoginController::class, 'loginAPI']); // API login
+// Chatbot API
+Route::post('/ask-api', [OpenRouterController::class, 'askApi']);
 
+// Protected Routes
 Route::middleware('auth:sanctum')->group(function () {
+    // Auth
     Route::post('/logout', [LoginController::class, 'logoutAPI']);
-
     Route::get('/profile', function (Request $request) {
         return $request->user();
     });
-});
-use App\Http\Controllers\Books\CartController;
-use App\Http\Controllers\Books\OrderController;
-
-// Route untuk Cart
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/cart', [CartController::class, 'indexAPI']); // Menampilkan semua item di keranjang
-    Route::post('/cart/add', [CartController::class, 'addAPI']); // Menambah item ke keranjang
-    Route::delete('/cart/{id}/remove', [CartController::class, 'removeAPI']); // Menghapus item dari keranjang
-});
-
-// Route untuk Order
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/checkout', [OrderController::class, 'checkoutAPI']); // Checkout order
-    Route::get('/checkout/success', [OrderController::class, 'successAPI']); // Status sukses checkout
+    
+    // Cart
+    Route::get('/cart', [CartController::class, 'indexAPI']);
+    Route::post('/cart/add', [CartController::class, 'addAPI']);
+    Route::delete('/cart/{id}/remove', [CartController::class, 'removeAPI']);
+    
+    // Orders
+    Route::post('/checkout', [OrderController::class, 'checkoutAPI']);
+    Route::get('/checkout/success', [OrderController::class, 'successAPI']);
     Route::post('/orders', [OrderController::class, 'indexAPI']);
-
 });
-Route::post('/ask-api', [App\Http\Controllers\OpenRouterController::class, 'askApi']);
