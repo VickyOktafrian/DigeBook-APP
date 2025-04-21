@@ -38,3 +38,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/orders', [OrderController::class, 'indexAPI']);
 
 });
+Route::post('/ask-api', [App\Http\Controllers\OpenRouterController::class, 'askApi']);
